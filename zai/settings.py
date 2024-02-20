@@ -50,7 +50,7 @@ WSGI_APPLICATION = 'zai.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.posgresql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'zai',
         'USER': 'postgres',
         'PASSWORD': 'damian',
