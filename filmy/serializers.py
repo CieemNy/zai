@@ -27,3 +27,6 @@ class FilmSerializer(serializers.ModelSerializer):
         instance.ocena = validated_data.get('ocena', instance.ocena)
         instance.save()
         return instance
+
+    def destroy(self, instance):
+        instance.delete()

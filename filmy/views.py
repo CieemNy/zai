@@ -1,6 +1,5 @@
 from rest_framework import generics
-from models import *
-from serializers import *
+from .serializers import *
 
 
 class ListFilm(generics.ListAPIView):
@@ -16,6 +15,19 @@ class RetrieveFilm(generics.RetrieveAPIView):
 
 
 class CreateFilm(generics.ListCreateAPIView):
+    queryset = Film.objects.all()
     serializer_class = FilmSerializer
     name = "create-film"
+
+
+class DestroyFilm(generics.DestroyAPIView):
+    queryset = Film.objects.all()
+    serializer_class = FilmSerializer
+    name = "destroy-film"
+
+
+class UpdateFilm(generics.UpdateAPIView):
+    queryset = Film.objects.all()
+    serializer_class = FilmSerializer
+    name = "update-film"
 
