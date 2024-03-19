@@ -31,3 +31,13 @@ class UpdateFilm(generics.UpdateAPIView):
     serializer_class = FilmSerializer
     name = "update-film"
 
+
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializerShort
+
+
+class UserCreateList(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import Film
 
@@ -30,3 +31,15 @@ class FilmSerializer(serializers.ModelSerializer):
 
     def destroy(self, instance):
         instance.delete()
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+
+
+class UserSerializerShort(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["username", "is_superuser", "email", "is_staff", "is_active"]
