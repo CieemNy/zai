@@ -1,9 +1,21 @@
-from django.http import HttpResponse
+from rest_framework import generics
+from models import *
+from serializers import *
 
 
-def wszystkie(request):
-    return HttpResponse("<h1>Tu będzie wyświetlana lista filmów z bazy danych.</h1>")
+class ListFilm(generics.ListAPIView):
+    queryset = Film.objects.all()
+    serializer_class = FilmSerializer
+    name = "list-film"
 
 
-def szczegoly(request):
-    return HttpResponse("<h1>Tu będą wyświetlane szczególy wybranego filmu.")
+class RetrieveFilm(generics.RetrieveAPIView):
+    queryset = Film.objects.all()
+    serializer_class = FilmSerializer
+    name = "retrieve-film"
+
+
+class CreateFilm(generics.ListCreateAPIView):
+    serializer_class = FilmSerializer
+    name = "create-film"
+
