@@ -8,6 +8,7 @@ class Film(models.Model):
     producent = models.CharField(max_length=255)
     rezyser = models.CharField(max_length=255)
     rok = models.IntegerField(blank=False)
+    owner = models.ForeignKey(User, related_name='filmy', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return "{} ({})".format(self.tytul, str(self.rok))
@@ -24,6 +25,7 @@ class ExtraInfo(models.Model):
     czas_trwania = models.PositiveSmallIntegerField(null=True, blank=True)
     gatunek = models.PositiveSmallIntegerField(choices=GATUNEK, null=True, blank=True)
     filmy = models.OneToOneField(Film, on_delete=models.CASCADE, null=True, blank=True)
+    owner = models.ForeignKey(User, related_name='exinfo', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.reprezentacja()
@@ -40,6 +42,7 @@ class Ocena(models.Model):
     recenzja = models.TextField(default="", blank=True)
     gwiazdki = models.PositiveSmallIntegerField(default=5)
     film = models.ForeignKey(Film, on_delete=models.CASCADE, null=True, blank=True)
+    owner = models.ForeignKey(User, related_name='oceny', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         rec = self.recenzja[:20] + ' ...'

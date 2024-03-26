@@ -4,9 +4,14 @@ from .models import *
 
 
 class UserSerializer(serializers.ModelSerializer):
+    filmy = serializers.PrimaryKeyRelatedField(many=True, queryset=Film.objects.all())
+    einfo = serializers.PrimaryKeyRelatedField(queryset=ExtraInfo.objects.all())
+    oceny = serializers.PrimaryKeyRelatedField(many=True, queryset=Ocena.objects.all())
+    aktorzy = serializers.PrimaryKeyRelatedField(many=True, queryset=Aktor.objects.all())
+
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ['id', 'username', 'filmy']
 
 
 class UserSerializerShort(serializers.ModelSerializer):
