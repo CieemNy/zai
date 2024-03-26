@@ -31,13 +31,13 @@ class UserSerializerShort(serializers.ModelSerializer):
 class ExtraInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExtraInfo
-        fields = ['czas_trwania', 'gatunek', 'rezyser', 'filmy']
+        fields = ['czas_trwania', 'gatunek', 'filmy']
 
 
 class OcenaSerializer(serializers.ModelSerializer):
-    class Meta: model = Ocena
-
-    fields = ['recenzja', 'gwiazdki', 'film']
+    class Meta:
+        model = Ocena
+        fields = ['recenzja', 'gwiazdki', 'film']
 
 
 class AktorSerializer(serializers.ModelSerializer):
@@ -45,8 +45,7 @@ class AktorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Aktor
-
-    fields = ['id', 'imie', 'nazwisko', 'filmy']
+        fields = ['id', 'imie', 'nazwisko', 'filmy']
 
 
 class FilmSerializer(serializers.ModelSerializer):
