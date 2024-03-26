@@ -32,12 +32,41 @@ class UpdateFilm(generics.UpdateAPIView):
     name = "update-film"
 
 
-class UserList(generics.ListAPIView):
+class UserCreateList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializerShort
 
 
-class UserCreateList(generics.ListCreateAPIView):
+class UserRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserSerializerShort
 
+
+class ExtraInfoCreateList(generics.ListCreateAPIView):
+    queryset = ExtraInfo.objects.all()
+    serializer_class = ExtraInfoSerializer
+
+
+class ExtraInfoRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = ExtraInfo.objects.all()
+    serializer_class = ExtraInfoSerializer
+
+
+class OcenaCreateList(generics.ListCreateAPIView):
+    queryset = Ocena.objects.all()
+    serializer_class = OcenaSerializer
+
+
+class OcenaRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Ocena.objects.all()
+    serializer_class = OcenaSerializer
+
+
+class AktorCreateList(generics.ListCreateAPIView):
+    queryset = Aktor.objects.all()
+    serializer_class = AktorSerializer
+
+
+class AktorRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Aktor.objects.all()
+    serializer_class = AktorSerializer
