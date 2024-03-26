@@ -3,7 +3,7 @@ from .models import Film
 
 
 class FilmAdmin(admin.ModelAdmin):
-    list_display = ['id', 'tytul', 'opis', 'producent', 'rezyser', 'rok', 'ocena']
+    list_display = ['id', 'tytul', 'opis', 'producent', 'rezyser', 'rok']
 
 
 admin.site.register(Film, FilmAdmin)
