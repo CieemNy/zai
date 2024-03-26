@@ -19,6 +19,9 @@ class CreateFilm(generics.ListCreateAPIView):
     serializer_class = FilmSerializer
     name = "create-film"
 
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
 
 class DestroyFilm(generics.DestroyAPIView):
     queryset = Film.objects.all()
