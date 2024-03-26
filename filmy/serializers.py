@@ -53,17 +53,21 @@ class FilmSerializer(serializers.ModelSerializer):
     extrainfo = serializers.StringRelatedField()
     ocena_set = OcenaSerializer(read_only=True, many=True)
     aktor_set = serializers.StringRelatedField(read_only=True, many=True)
+
     class Meta:
         model = Film
-        fields = [
-            'id',
-            'tytul',
-            'opis',
-            'producent',
-            'rezyser',
-            'rok',
-            'ocena'
-        ]
+        # fields = [
+        #     'id',
+        #     'tytul',
+        #     'opis',
+        #     'producent',
+        #     'rezyser',
+        #     'rok',
+        #     'extrainfo',
+        #     'ocena_set',
+        #     'aktor_set',
+        # ]
+        fields = '__all__'
 
     def create(self, validated_data):
         return Film.objects.create(**validated_data)

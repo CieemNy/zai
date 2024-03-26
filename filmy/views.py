@@ -6,7 +6,7 @@ from .permissions import IsOwnerOrReadOnly
 
 
 class ListCreateFilm(generics.ListAPIView):
-    # queryset = Film.objects.all().order_by('-rok','tytul')
+    queryset = Film.objects.all()
     serializer_class = FilmSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
