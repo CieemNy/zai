@@ -3,6 +3,7 @@ from . import views
 from .views import *
 
 urlpatterns = [
+    path('', api_root),
     path('filmlist/', views.ListCreateFilm.as_view(), name="film-list"),
     path('filmlist/<int:pk>/', views.RetrieveUpdateDestroyFilm.as_view(), name="film-retrieve"),
     path('filmcreate/', views.ListCreateFilm.as_view(), name="film-create"),
