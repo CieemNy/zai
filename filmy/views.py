@@ -3,6 +3,9 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from .serializers import *
 from .permissions import IsOwnerOrReadOnly
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
 
 
 class ListCreateFilm(generics.ListAPIView):
@@ -72,3 +75,14 @@ class AktorCreateList(generics.ListCreateAPIView):
 class AktorRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Aktor.objects.all()
     serializer_class = AktorSerializer
+
+
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'Użytkownicy': reverse('ListaUzytkownikow', request=request, format=format),
+        'Wszystkie filmy': reverse('ListaFilmow', request=request, format=format),
+        'Informacje dodatkowe': reverse('InformacjeDodatkowe', request=request, format=format),
+        'Wszystkie oceny': reverse('Recenzje', request=request, format=format),
+        'Wszyscy aktorzy': reverse('Aktorzy', request=request, format=format),
+    })
