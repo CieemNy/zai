@@ -1,6 +1,6 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, status
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated, DjangoModelPermissions
 from .serializers import *
 from .permissions import IsOwnerOrReadOnly
 from rest_framework.decorators import api_view
@@ -38,6 +38,7 @@ class RetrieveUpdateDestroyFilm(generics.RetrieveUpdateDestroyAPIView):
 
 
 class UserCreateList(generics.ListCreateAPIView):
+    # permission_classes = [DjangoModelPermissions]
     permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserSerializerShort
@@ -55,6 +56,7 @@ class UserCreateList(generics.ListCreateAPIView):
 
 
 class UserRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    # permission_classes = [DjangoModelPermissions]
     permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserSerializerShort
