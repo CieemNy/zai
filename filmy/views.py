@@ -38,11 +38,13 @@ class RetrieveUpdateDestroyFilm(generics.RetrieveUpdateDestroyAPIView):
 
 
 class UserCreateList(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
     queryset = User.objects.all()
     serializer_class = UserSerializerShort
 
 
 class UserRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
     queryset = User.objects.all()
     serializer_class = UserSerializerShort
 
@@ -80,9 +82,9 @@ class AktorRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
-        'Użytkownicy': reverse('ListaUzytkownikow', request=request, format=format),
-        'Wszystkie filmy': reverse('ListaFilmow', request=request, format=format),
-        'Informacje dodatkowe': reverse('InformacjeDodatkowe', request=request, format=format),
-        'Wszystkie oceny': reverse('Recenzje', request=request, format=format),
-        'Wszyscy aktorzy': reverse('Aktorzy', request=request, format=format),
+        'Użytkownicy': reverse('UserList', request=request, format=format),
+        'Wszystkie filmy': reverse('film-list', request=request, format=format),
+        'Informacje dodatkowe': reverse('ExtraInfoCreateList', request=request, format=format),
+        'Wszystkie oceny': reverse('OcenaCreateList', request=request, format=format),
+        'Wszyscy aktorzy': reverse('AktorCreateList', request=request, format=format),
     })
