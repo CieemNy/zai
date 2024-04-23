@@ -83,3 +83,11 @@ class FilmSerializer(serializers.ModelSerializer):
 
     def destroy(self, instance):
         instance.delete()
+
+
+class statRezyser(serializers.ListSerializer):
+    child = serializers.CharField()
+
+
+class statOceny(serializers.ListSerializer):
+    child = serializers.CharField()
